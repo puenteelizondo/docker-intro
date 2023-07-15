@@ -1,0 +1,18 @@
+#porque tenemos esa version
+FROM python:3.11
+#esto es para que ya no hagas nada para que lo haga de forma automatica
+
+#para especificar en la carpeta que vas a trabajar es este caso /api
+WORKDIR /api
+#necesitamos copiar los archivos para que pueda trabajar correctamente
+COPY . /api
+
+RUN pip install --upgrade pip
+
+RUN pip install poetry
+
+RUN poetry install
+# esto es lo que ponemos en e cmd para correrlo no agregamos --reload  porque son para prodccion 
+#no queremos que se modifique
+#                                           especificamos el host // y que corra en el default
+CMD ["poetry", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
