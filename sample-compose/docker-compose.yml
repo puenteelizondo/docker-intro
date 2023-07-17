@@ -1,0 +1,48 @@
+#arcichos yml son como json son los que vamos a usar 
+#generar dns 
+services:
+  db:
+    image: mongo:latest
+    #o tambien creanmos el .env y el .gitignore para agregar el.env
+    #y asi traemos las variables de ambiente
+    env_file:
+    
+      - .env
+    #agregamos la variables de ambiente para la conexion
+      
+      #definimos en que red va a estar y como solo necestiamos la conectividad de la base de datos
+      #a la api
+      #es para no hacernos bolas con el ip de la base de datos se le va asiganr
+    networks:
+      - academia
+
+  api:
+    build:
+      #aqui en el contexto es  el nombre de la carpeta donde este el dockerfile
+      context: api
+      #para levantar los puertos  cuando se conecten al host se conecten al 8000 y mandalas al 8000
+    ports:
+      - 8000:8000
+    #aqui decimos que el servicio de la api no se va a levantar sino esta prendido el servicio de base de datos
+    depends_on:
+      - db
+
+    env_file:
+      #se las pamos porque necesitamos hacer la conexion de la base de datos
+      - .env
+      #le pasamos las variables de ambiente a la api de esta manera, aqui iran todas las variables de ambiente
+    
+      #asi con los dos la  misma ip siempre se asignaran mutuamente la red de academia 
+    networks:
+      - academia
+
+networks:
+#para ip estaticos// puede ser cualquier otro nombre
+  academia:
+#ahora en la conexiion de la base de datos le pasamos el servicio que es db 
+
+       
+      
+    
+
+
