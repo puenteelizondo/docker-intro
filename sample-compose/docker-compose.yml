@@ -1,7 +1,10 @@
 #arcichos yml son como json son los que vamos a usar 
 #generar dns 
+#ESTO FUNCIONA LOCAL 
 services:
   db:
+    #esta ip es la que se manda a la conexion de base de datos
+  
     image: mongo:latest
     #o tambien creanmos el .env y el .gitignore para agregar el.env
     #y asi traemos las variables de ambiente

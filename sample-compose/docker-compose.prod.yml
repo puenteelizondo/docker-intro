@@ -1,0 +1,8 @@
+#aqui es para que el de produccion no se meta a la base de datos y solo llame al servicio de base de datos 
+#y solo sobreescribimos los dos docker-compose para que funcionen en conjunto
+
+#ESTO FUNCIONA PARA PRODUCCION PORQUE SON DATOS DE LA NUBE
+services:
+  api:
+    image: 126676630030.dkr.ecr.us-west-2.amazonaws.com/academia:latest
+    
